@@ -304,43 +304,183 @@ tr.dt-matched .dt-route{background:rgba(16,185,129,.15);color:var(--green);font-
 .modal-body li{margin-bottom:4px}
 .modal-body h4{font-size:.72rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-dim);margin:12px 0 6px}
 
-/* ─── Responsive ─── */
+/* ═══════════════════════════════════════
+   RESPONSIVE — Tablet (≤ 1100px)
+   ═══════════════════════════════════════ */
 @media(max-width:1100px){
   .scenario-grid{grid-template-columns:repeat(2,1fr)}
-  .main-layout{grid-template-columns:1fr}
-  .left-panel,.right-panel{max-height:none}
+  .main-layout{grid-template-columns:1fr;grid-template-rows:auto}
+  .left-panel,.right-panel{max-height:none;overflow-y:visible}
   .bottom-panels{grid-template-columns:1fr}
+  .analytics-footer{flex-wrap:wrap}
+  .stat-item{flex:1 1 calc(25% - 10px);min-width:100px}
 }
 
+/* ═══════════════════════════════════════
+   RESPONSIVE — Mobile (≤ 768px)
+   ═══════════════════════════════════════ */
 @media(max-width:768px){
-  .welcome-title{font-size:2.4rem}
-  .scenario-grid{grid-template-columns:1fr; padding: 0 16px}
-  
-  .top-bar{flex-direction:column;align-items:stretch;gap:12px;padding:12px 16px}
-  .top-bar-left{justify-content:space-between}
-  .top-bar-center{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .top-bar-right{justify-content:space-between;border-top:1px solid var(--border);padding-top:10px}
-  
-  .main-layout{padding:12px}
-  .bottom-panels{padding:0 12px 14px}
-  
-  .glass{padding:14px}
-  
-  .flow-chart{flex-wrap:nowrap;justify-content:flex-start;padding:16px 12px;min-width:min-content}
-  .flow-node{flex-shrink:0}
-  
-  .analytics-footer{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px}
-  .stat-item{padding:8px;flex-direction:column;text-align:center;gap:4px}
-  
-  .modal-box{width:95%;max-height:85vh}
+  html{font-size:13px}
+
+  /* ── Welcome Screen ── */
+  .welcome-screen{
+    position:fixed;inset:0;
+    overflow-y:auto;overflow-x:hidden;
+    padding:40px 0 60px;
+    justify-content:flex-start;
+    -webkit-overflow-scrolling:touch;
+  }
+  .welcome-title{font-size:2rem;padding:0 16px}
+  .welcome-sub{font-size:.95rem;margin-bottom:28px;padding:0 16px}
+  .scenario-grid{grid-template-columns:1fr;padding:0 16px;gap:12px;max-width:100%}
+  .scenario-card{padding:18px 16px}
+  .scenario-card .sc-num{font-size:2rem;margin-bottom:6px}
+  .scenario-card .sc-title{font-size:.88rem}
+  .scenario-card .sc-desc{font-size:.75rem}
+
+  /* ── Top Bar ── */
+  .top-bar{
+    flex-direction:column;align-items:stretch;
+    gap:10px;padding:10px 14px;
+    position:sticky;top:0;z-index:50;
+  }
+  .top-bar-left{
+    display:flex;align-items:center;
+    justify-content:space-between;flex-wrap:wrap;gap:8px;
+  }
+  .top-scenario-name{font-size:.85rem;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .top-badge{font-size:.6rem;padding:2px 8px}
+  .top-bar-center{
+    display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;
+  }
+  .btn{padding:10px 8px;font-size:.72rem;justify-content:center;min-height:42px}
+  .top-bar-right{
+    display:flex;align-items:center;
+    justify-content:space-between;
+    border-top:1px solid var(--border);padding-top:8px;
+  }
+  .speed-control input[type=range]{width:60px}
+
+  /* ── Main Layout ── */
+  .main-layout{
+    display:flex;flex-direction:column;
+    gap:12px;padding:10px 12px;
+  }
+
+  /* ── Glass Cards ── */
+  .glass{padding:14px;border-radius:12px}
+
+  /* ── Flow Chart ── */
+  .flow-chart{
+    display:flex;flex-wrap:nowrap;
+    overflow-x:auto;overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    justify-content:flex-start;
+    padding:14px 10px;gap:0;
+    scroll-snap-type:x proximity;
+  }
+  .flow-node{flex-shrink:0;scroll-snap-align:center}
+  .node-circle{width:44px;height:44px;font-size:1.1rem}
+  .node-label{font-size:.6rem;max-width:56px}
+  .flow-line{width:20px;margin-bottom:18px}
+
+  /* ── Narration Bar ── */
+  .narration-bar{padding:12px 14px;gap:10px}
+  .narration-icon{font-size:1.3rem}
+  .narration-text{font-size:.82rem;line-height:1.5;word-break:break-word}
+
+  /* ── Banners ── */
+  .banner{padding:14px 16px;gap:12px;flex-direction:column;text-align:center}
+  .banner-icon{font-size:2rem}
+  .banner-text span{word-break:break-word}
+
+  /* ── Provisioning ── */
+  .provision-bar{height:22px;border-radius:11px}
+
+  /* ── Info Grid ── */
+  .info-row{padding:7px 10px;flex-direction:column;gap:3px}
+  .info-value{text-align:left;max-width:100%;font-size:.78rem}
+
+  /* ── Tabs ── */
+  .tab-btn{padding:8px 4px;font-size:.65rem;letter-spacing:0}
+
+  /* ── Decision Table ── */
+  .dt-table{font-size:.72rem}
+  .dt-table th{padding:6px 8px;font-size:.62rem}
+  .dt-table td{padding:8px 8px}
+  .dt-route{font-size:.65rem;padding:2px 6px}
+
+  /* ── Decision Tree ── */
+  .tree-q{font-size:.7rem}
+  .tree-branch{font-size:.62rem;padding:2px 8px}
+
+  /* ── Approval Cards ── */
+  .approval-grid{grid-template-columns:1fr 1fr;gap:6px}
+  .appr-card{padding:10px}
+  .appr-card .appr-icon{font-size:1.3rem;margin-bottom:4px}
+  .appr-card .appr-role{font-size:.66rem}
+  .appr-card .appr-name{font-size:.6rem}
+
+  /* ── Execution Log ── */
+  .exec-log{max-height:150px}
+  .log-entry{gap:5px;padding:4px 8px;font-size:.68rem}
+  .log-ts{font-size:.6rem}
+  .log-tl{font-size:.68rem}
+
+  /* ── Bottom Panels ── */
+  .bottom-panels{grid-template-columns:1fr;padding:0 12px 12px;gap:12px}
+
+  /* ── Analytics Footer ── */
+  .analytics-footer{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    gap:6px;padding:10px 12px;
+  }
+  .stat-item{
+    flex-direction:column;text-align:center;
+    gap:2px;padding:8px 4px;
+  }
+  .stat-icon{font-size:.9rem}
+  .stat-value{font-size:1rem}
+  .stat-label{font-size:.55rem}
+
+  /* ── Modal ── */
+  .modal-box{width:95%;max-height:80vh}
+  .modal-head{padding:12px 16px}
+  .modal-head h3{font-size:.9rem}
+  .modal-body{padding:16px;font-size:.8rem}
+
+  /* ── Educational ── */
+  .edu-content{font-size:.76rem}
+
+  /* ── Orbs smaller on mobile ── */
+  .orb-1{width:300px;height:300px}
+  .orb-2{width:250px;height:250px}
+  .orb-3{width:200px;height:200px}
 }
 
+/* ═══════════════════════════════════════
+   RESPONSIVE — Small Phone (≤ 480px)
+   ═══════════════════════════════════════ */
 @media(max-width:480px){
-  .welcome-title{font-size:1.8rem}
-  .welcome-sub{font-size:1rem;margin-bottom:32px}
-  .top-scenario-name{font-size:0.9rem}
-  
+  html{font-size:12px}
+  .welcome-title{font-size:1.6rem}
+  .welcome-sub{font-size:.85rem;margin-bottom:20px}
+
+  .top-bar-center{grid-template-columns:1fr 1fr;gap:6px}
+  .top-scenario-name{font-size:.78rem}
+
+  .node-circle{width:38px;height:38px;font-size:1rem}
+  .node-label{font-size:.55rem;max-width:48px}
+  .flow-line{width:14px}
+
+  .narration-text{font-size:.76rem}
+
   .approval-grid{grid-template-columns:1fr}
-  .analytics-footer{grid-template-columns:1fr 1fr}
-  .stat-item:first-child{grid-column:1/-1} /* Make total runs full width */
+  .analytics-footer{grid-template-columns:repeat(3,1fr)}
+  .stat-item:first-child{grid-column:1/-1}
+  .stat-value{font-size:.9rem}
+
+  .info-label{font-size:.62rem}
+  .info-value{font-size:.72rem}
+  .panel-title{font-size:.65rem}
 }
