@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: live-simulation
+    env: static
+    buildCommand: "" # No build required for static HTML/JS/CSS
+    staticPublishPath: .
